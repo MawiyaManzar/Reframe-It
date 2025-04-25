@@ -63,7 +63,7 @@ if user_input:
     st.session_state.chat_history.append(HumanMessage(content=user_input))
 
     # Format the prompt with user input
-    prompt = cbt_prompt.format_messages(negative_thought=user_input)
+    prompt = cbt_few_shot_prompt.format_messages(negative_thought=user_input)
 
     try:
         with st.spinner("Thinking Naturally ...."):
