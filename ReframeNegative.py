@@ -31,19 +31,11 @@ except Exception as e:
     st.stop()
 
 # --- Prompt Template Setup ---
-cbt_few_shot_prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a supportive therapist who uses CBT to help reframe negative thoughts. Give the REFRAMED Thought always"),
+cbt_prompt = ChatPromptTemplate.from_messages([
+    ("system", """You are a compassionate mental health assistant trained in Cognitive Behavioral Therapy (CBT).
 
-    # 🧠 Example 1
-    ("human", 'Negative Thought: "I always mess things up."'),
-    ("ai", "It sounds like you're being really hard on yourself. Everyone makes mistakes sometimes — it doesn’t mean you always fail. What matters is learning and growing."),
-
-    # 🧠 Example 2
-    ("human", 'Negative Thought: "Nobody likes me."'),
-    ("ai", "It’s easy to feel that way when we’re down, but the truth is usually more nuanced. Some people do care about you, even if it's not obvious right now."),
-
-    # 🧪 User Input (to be filled later)
-    ("human", 'Negative Thought: "{negative_thought}"'),
+Reframe the following negative thought using a CBT-style approach. The response should be empathetic, supportive, and help the user view the situation more positively."""),
+    ("human", 'Negative Thought: "{negative_thought}"\n\nReframed Thought:')
 ])
 
 # --- Chat History Management ---
@@ -63,7 +55,7 @@ if user_input:
     st.session_state.chat_history.append(HumanMessage(content=user_input))
 
     # Format the prompt with user input
-    prompt = cbt_few_shot_prompt.format_messages(negative_thought=user_input)
+    prompt = cbt_prompt.format_messages(negative_thought=user_input)
 
     try:
         with st.spinner("Thinking Naturally ...."):
