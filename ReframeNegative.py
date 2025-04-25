@@ -32,7 +32,7 @@ except Exception as e:
 
 # --- Prompt Template Setup ---
 cbt_few_shot_prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a supportive therapist who uses CBT to help reframe negative thoughts."),
+    ("system", "You are a supportive therapist who uses CBT to help reframe negative thoughts. Give the REFRAMED Thought always"),
 
     # 🧠 Example 1
     ("human", 'Negative Thought: "I always mess things up."'),
