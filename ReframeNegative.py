@@ -58,7 +58,7 @@ if user_input:
     prompt = cbt_prompt.format_messages(negative_thought=user_input)
 
     try:
-        with st.spinner("Thinking Naturally ...."):
+        with st.spinner("Counselor Thinking ....",2):
             response = model.invoke(prompt)
             st.chat_message("assistant").write(response.content)
             st.session_state.chat_history.append(response)
